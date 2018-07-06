@@ -22,7 +22,7 @@ PROJECT = 'XXXXX'
 ## Usage
 
 * @prompt: `gcp_snapshots.py -v <volume_name> -s <snapshot_name> -i <saved_snapshots>`
-* @crontab: `0 2 * * * user ./gcp_snapshots.py -c <config_path> -v <volume_name> -s <snapshot_name> -i <saved_snapshots>`
+* @crontab + virtualenv: `0 2 * * * user source ./pyenv/bin/activate && python gcp_snapshots.py -c <config_path> -v <volume_name> -s <snapshot_name> -i <saved_snapshots>`
 * Help:
 
 ```shell
