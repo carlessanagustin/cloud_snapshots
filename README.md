@@ -14,16 +14,13 @@ SERVICE_ACCOUNT_KEY = 'XXXXX'
 PROJECT = 'XXXXX'
 ```
 
-## Logs
+## Setup
 
-* logs path: /var/log/gcp_snapshots/gcp_snapshots.log
-* logrotate enabled with `make install`
+* Run: `make install`
+* Logs path: `/var/log/gcp_snapshots/gcp_snapshots.log`
+* Logrotate enabled: `/etc/logrotate.d/gcp_snapshots`
 
 ## Usage
-
-* @prompt: `gcp_snapshots.py -v <volume_name> -s <snapshot_name> -i <saved_snapshots>`
-* @crontab + virtualenv: `0 2 * * * user source ./pyenv/bin/activate && python gcp_snapshots.py -c <config_path> -v <volume_name> -s <snapshot_name> -i <saved_snapshots>`
-* Help:
 
 ```shell
 usage: gcp_snapshots.py [-h] [-c CONFIG] -v VOLUME -s SNAPSHOT -i ITERATIONS [-l LOG]
@@ -44,3 +41,13 @@ optional arguments:
   -l LOG, --log LOG     Log file path
                         (default=/var/log/gcp_snapshots/gcp_snapshots.log)
 ```
+
+## Usage (extended)
+
+* crontab + virtualenv:
+
+```shell
+0 2 * * * <username> source ./pyenv/bin/activate && python gcp_snapshots.py -c <config_path> -v <volume_name> -s <snapshot_name> -i <saved_snapshots> -l <log_path>
+```
+
+
