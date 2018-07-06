@@ -1,0 +1,5 @@
+*.json
+*.retry
+*.pyc
+pyenv
+gcp_secrets.py
