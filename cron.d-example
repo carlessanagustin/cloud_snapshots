@@ -1,0 +1,3 @@
+WORKING_FOLDER=/opt/gcp_snapshots
+
+00 2 * * *   root   $WORKING_FOLDER/gcp_snapshots.py -v <volume_name> -s <snapshot_name> -c $WORKING_FOLDER/keys/<key_name>.py -i 2
