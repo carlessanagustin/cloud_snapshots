@@ -1,6 +1,9 @@
 PYTHON_ENV=pyenv
 PROG=gcp_snapshots
 
+export LC_ALL="en_US.UTF-8"
+export LC_CTYPE="en_US.UTF-8"
+
 #cron
 # * 2 * * * root source $WORKING_PATH/pyenv/bin/activate && python gcp_snapshots.py -v test-carles-mon-001 -s test-carles -c ./gcp_secrets.py -i 4 > /dev/null
 
@@ -27,4 +30,4 @@ teardown:
 	sudo rm -f /etc/logrotate.d/${PROG}
 
 packages:
-	sudo apt-get -y install python-pip python-virtualenv
+	sudo apt-get -y install python-setools python-pip python-virtualenv
