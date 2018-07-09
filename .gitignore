@@ -1,6 +1,9 @@
-*.json
 *.retry
 *.pyc
 pyenv
-gcp_secrets.py
 demo.sh
+
+*.json
+gcp_secrets.py
+keys
+keys.zip
