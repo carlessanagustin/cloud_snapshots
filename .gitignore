@@ -3,3 +3,4 @@
 *.pyc
 pyenv
 gcp_secrets.py
+demo.sh

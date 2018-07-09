@@ -6,6 +6,7 @@ Python script to snapshot volumes in GCP.
 
 * Install Python libraries: `pip install -r requirements.txt`
 * Service account key file: http://libcloud.readthedocs.io/en/latest/compute/drivers/gce.html#connecting-to-google-compute-engine
+* Service account role: Compute Storage Admin = roles/compute.storageAdmin (https://goo.gl/dTdbVw)
 * GCP config file format (default = ./gcp_secrets.py):
 
 ```python
@@ -49,5 +50,3 @@ optional arguments:
 ```shell
 0 2 * * * <username> source ./pyenv/bin/activate && python gcp_snapshots.py -c <config_path> -v <volume_name> -s <snapshot_name> -i <saved_snapshots> -l <log_path>
 ```
-
-
