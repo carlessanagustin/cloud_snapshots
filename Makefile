@@ -11,13 +11,6 @@ install: logrotate virtualenv
 test:
 	sh -c ". ./pyenv/bin/activate && python gcp_snapshots.py -v test-carles-mon-001 -s test-carles -i 4"
 
-env:
-	sh -c 'source ${PYTHON_ENV}/bin/activate'
-
-virtualenv:
-	virtualenv ${PYTHON_ENV}
-	${PYTHON_ENV}/bin/pip install -r requirements.txt
-
 logrotate:
 	sudo mkdir -p /var/log/${PROG}
 	sudo chown -Rf $(shell whoami):$(shell whoami) /var/log/${PROG}
@@ -30,3 +23,10 @@ teardown:
 
 packages:
 	sudo apt-get -y install python-setools python-pip python-virtualenv
+
+env:
+	sh -c 'source ${PYTHON_ENV}/bin/activate'
+
+virtualenv:
+	virtualenv -p python3 ${PYTHON_ENV}
+	${PYTHON_ENV}/bin/pip3 install -r requirements.txt

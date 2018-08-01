@@ -1,7 +1,7 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 '''
 Desired state @crontab
-0 2 * * * gce python2 gcp_snapshots.py -c <config_path> -v <volume_name> -s <snapshot_name> -i <saved_snapshots> -l <log_path>
+0 2 * * * gce python3 gcp_snapshots.py -c <config_path> -v <volume_name> -s <snapshot_name> -i <saved_snapshots> -l <log_path>
 '''
 
 from libcloud.compute.types import Provider
@@ -100,7 +100,7 @@ def search_destroy(args_me):
 
 if __name__ == '__main__':
     args_me = setup_argparse()
-    execfile(args_me.config)
+    exec(open(args_me.config).read())
 
     logging_formatter = '%(asctime)s - %(levelname)s - %(message)s'
     log_me = setup_logging(args_me.log, logging_formatter)
