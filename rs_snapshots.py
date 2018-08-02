@@ -10,6 +10,7 @@ from datetime import datetime
 import logging
 import argparse
 import re
+import time
 
 # ---------- helpers
 def setup_logging(logging_fileHandler, logging_formatter):
@@ -88,11 +89,9 @@ def create_snapshot(volume_name, snapshot_name):
     gce = get_rs_driver()
     try:
         snapshot = gce.create_volume_snapshot(find_volume(volume_name), snapshot_name)
-        # >>> ss.state
-        # 'creating'
-        # >>> ss = find_volume_snapshots(volume, "carles-test-volume-2018-08-01-165751")
-        # >>> ss.state
-        # 'available'
+        while 'available' != find_volume_snapshot(find_volume(volume_name), snapshot_name).state:
+            time.sleep(10)
+
         log_me.info('Created snapshot: %s', snapshot)
         return snapshot
     except Exception as ec:
@@ -116,11 +115,14 @@ def search_destroy(args_me):
         for item in volume_snapshots:
             try:
                 item.destroy()
-                #gce.destroy_volume_snapshot(item)
+                #while 'None' != item.state:
+                while 'None' != str(find_volume_snapshot(find_volume(args_me.volume), args_me.snapshot)):
+                    time.sleep(10)
+                log_me.info('Deleted snapshot: %s', item)
+
             except Exception as ec:
                 log_me.error('Error deleting snapshot: %s', ec)
                 import sys; sys.exit(1)
-            log_me.info('Deleted snapshot: %s', item)
             to_delete -= 1
             if to_delete <= 0: break;
 
