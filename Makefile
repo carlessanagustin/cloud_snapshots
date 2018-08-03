@@ -25,7 +25,8 @@ virtualenv:
 
 
 packages:
-	sudo apt-get -y install python-setools python-pip python-virtualenv
-
+	sudo apt-get update
+	sudo apt-get -y install python-setools python3-pip python3-virtualenv
+	
 env:
 	sh -c 'source ${PYTHON_ENV}/bin/activate'
